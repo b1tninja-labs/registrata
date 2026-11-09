@@ -69,7 +69,7 @@ Legend: `[ok]` implemented and pinned by a named test -- `[part]` partial, with 
 | `cache.make_cache()` | design | `[ok]` | `tests/test_cache.py::test_make_cache_backends` | M7 |
 | `retry.with_retries()` | design | `[ok]` | `tests/test_retry.py::test_with_retries_returns_success_and_sleeps` | M7 |
 | `circuitbreaker.run_with_circuit()` | design | `[ok]` | `tests/test_circuitbreaker.py::test_registry_and_run_with_circuit_block_open_endpoint` | M7 |
-| `ratelimit.TokenBucket()` | design | `[ok]` | `tests/test_ratelimit.py::test_token_bucket_acquire_and_refill` | M7 |
+| `ratelimit.token-bucket` | design | `[ok]` | `tests/test_ratelimit.py::test_token_bucket_acquire_and_refill` | M7 |
 | `lookup.unified` | design (one normalized record over RWhois, WHOIS and RDAP) | `[ok]` | `tests/test_experimental_lookup.py::test_lookup_rdap_and_whois_normalizes_rdap` | M8 |
 | `lookup.batch` | design | `[ok]` | `tests/test_batch.py::test_batch_returns_items_in_input_order_while_on_result_sees_completion_order` | M8 |
 | `gateway.tls` | design | `[ok]` | `tests/test_gateway.py::test_gateway_tls_wraps_listening_socket` | M8 |
