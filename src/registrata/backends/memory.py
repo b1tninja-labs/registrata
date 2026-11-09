@@ -202,7 +202,17 @@ class MemoryBackend(RwhoisBackend):
     def bump_serial(self, authority_area: str) -> None:
         soa = self.authority_areas.get(authority_area)
         if soa is not None:
-            soa.serial = format_timestamp(dt.datetime.now(dt.timezone.utc))
+            now = dt.datetime.now(dt.UTC)
+            fresh = format_timestamp(now)
+            if fresh <= soa.serial:
+                # Two writes inside one clock tick (about 16 ms on Windows) would
+                # otherwise share a serial, and a slave comparing serials would miss
+                # the second change. The serial must advance on every write.
+                held = dt.datetime.strptime(soa.serial[:14], "%Y%m%d%H%M%S")
+                millis = int(soa.serial[14:17] or 0)
+                held += dt.timedelta(milliseconds=millis + 1)
+                fresh = format_timestamp(held)
+            soa.serial = fresh
 
     def _registration_area(self, obj: ObjectRecord) -> str:
         """The authority area an object claims, checked against what we serve."""

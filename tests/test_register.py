@@ -682,3 +682,24 @@ def test_editing_a_guardian_object_requires_the_password_inside_it():
         register_as(host, port, "guarder", identifying + replacement, mode="mod")
     finally:
         instance.shutdown()
+
+
+def test_serial_advances_on_every_write_even_inside_one_clock_tick(
+    backend, monkeypatch
+):
+    """Two writes in the same millisecond must not share a serial."""
+    import datetime as dt
+
+    frozen = dt.datetime(2026, 11, 9, 12, 0, 0, 123000, tzinfo=dt.UTC)
+
+    class Frozen(dt.datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return frozen
+
+    monkeypatch.setattr("registrata.backends.memory.dt.datetime", Frozen)
+    seen = []
+    for _ in range(3):
+        backend.bump_serial(AREA)
+        seen.append(backend.get_soa(AREA).serial)
+    assert seen == sorted(set(seen)) and len(seen) == 3
