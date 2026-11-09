@@ -92,7 +92,9 @@ def test_a_refused_query_closes_the_connection_like_any_other(server):
             sock.recv(4096)  # the banner, which the server owes us on connect
             answer = _ask(sock, request)
             assert answer.startswith(b"%error"), request
-            assert _wait_for_close(sock), f"{request!r} was answered and then left the socket open"
+            assert _wait_for_close(sock), (
+                f"{request!r} was answered and then left the socket open"
+            )
 
 
 def test_limit_exceeded_error(server):

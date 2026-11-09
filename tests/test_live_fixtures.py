@@ -26,7 +26,17 @@ from registrata.experimental.whois_adapters import (
 FIXTURES = pathlib.Path(__file__).resolve().parent / "fixtures" / "live"
 
 # A key that ends in a URI scheme means the colon that split the line belonged to a URL.
-_SCHEME_TAILS = ("http", "https", "ftp", "ftps", "mailto", "ldap", "ldaps", "telnet", "file")
+_SCHEME_TAILS = (
+    "http",
+    "https",
+    "ftp",
+    "ftps",
+    "mailto",
+    "ldap",
+    "ldaps",
+    "telnet",
+    "file",
+)
 
 
 def load(name: str) -> str:
@@ -54,7 +64,11 @@ def test_pir_output_is_the_verisign_profile_and_that_is_correct():
 
 @pytest.mark.parametrize(
     "fixture",
-    ["whois_example_org_pir.txt", "whois_example_com_verisign.txt", "whois_org_iana.txt"],
+    [
+        "whois_example_org_pir.txt",
+        "whois_example_com_verisign.txt",
+        "whois_org_iana.txt",
+    ],
 )
 def test_registry_prose_never_becomes_a_field(fixture: str) -> None:
     """Every one of these payloads contains a sentence with a URL in it.
@@ -66,11 +80,17 @@ def test_registry_prose_never_becomes_a_field(fixture: str) -> None:
     """
     fields = whois_fields(fixture)
 
-    assert fields, "a registry record with no fields at all means the parser found nothing"
+    assert fields, (
+        "a registry record with no fields at all means the parser found nothing"
+    )
     for key in fields:
-        assert not key.endswith(_SCHEME_TAILS), f"URL colon parsed as a field separator: {key!r}"
+        assert not key.endswith(_SCHEME_TAILS), (
+            f"URL colon parsed as a field separator: {key!r}"
+        )
         assert "://" not in key, f"URL parsed as a field name: {key!r}"
-        assert not key.startswith(("%", "#", ">", "!")), f"commentary parsed as a field: {key!r}"
+        assert not key.startswith(("%", "#", ">", "!")), (
+            f"commentary parsed as a field: {key!r}"
+        )
 
 
 def test_pir_publishes_the_fields_a_domain_record_is_judged_by() -> None:
@@ -88,11 +108,15 @@ def test_pir_publishes_the_fields_a_domain_record_is_judged_by() -> None:
 def test_a_blank_referral_field_is_not_a_referral() -> None:
     """PIR prints ``Registrar WHOIS Server:`` with no value, meaning "nowhere else to ask"."""
     fields = whois_fields("whois_example_org_pir.txt")
-    result = whois.WhoisResult(query="example.org", server="whois.pir.org", fields=fields)
+    result = whois.WhoisResult(
+        query="example.org", server="whois.pir.org", fields=fields
+    )
 
     assert "registrar whois server" not in fields
     assert whois.parse_whois_referrals(result.raw) == []
-    assert whois.discover_next_whois_server(result, current_server="whois.pir.org") is None
+    assert (
+        whois.discover_next_whois_server(result, current_server="whois.pir.org") is None
+    )
 
 
 def test_verisign_refers_a_reserved_domain_to_iana_and_says_so() -> None:
@@ -116,12 +140,15 @@ def test_the_iana_root_record_refers_on_to_the_registry_operator() -> None:
 
 
 def _rdap_record(fixture: str, url: str):
-    return rdap_module.normalize_rdap(json.loads(load(fixture)), headers={}, url=url, status=200)
+    return rdap_module.normalize_rdap(
+        json.loads(load(fixture)), headers={}, url=url, status=200
+    )
 
 
 def test_verisign_rdap_hides_nothing_and_left_nothing_out() -> None:
     record = _rdap_record(
-        "rdap_example_com_verisign.json", "https://rdap.verisign.com/com/v1/domain/example.com"
+        "rdap_example_com_verisign.json",
+        "https://rdap.verisign.com/com/v1/domain/example.com",
     )
 
     assert "rdap_level_0" in record.as_dict()["conformance"]
@@ -140,7 +167,8 @@ def test_pir_rdap_redacts_a_value_without_the_response_being_truncated() -> None
     which is what the CLI did until this payload was replayed against it.
     """
     record = _rdap_record(
-        "rdap_example_org_pir.json", "https://rdap.publicinterestregistry.org/rdap/domain/example.org"
+        "rdap_example_org_pir.json",
+        "https://rdap.publicinterestregistry.org/rdap/domain/example.org",
     )
 
     assert [entry["name_type"] for entry in record.redacted] == ["Registry Domain ID"]
@@ -150,7 +178,9 @@ def test_pir_rdap_redacts_a_value_without_the_response_being_truncated() -> None
     assert record.truncation == []
 
 
-def test_cli_reports_redaction_without_warning_about_truncation(monkeypatch, capsys) -> None:
+def test_cli_reports_redaction_without_warning_about_truncation(
+    monkeypatch, capsys
+) -> None:
     from registrata.cli import main
 
     data = json.loads(load("rdap_example_org_pir.json"))
@@ -158,7 +188,10 @@ def test_cli_reports_redaction_without_warning_about_truncation(monkeypatch, cap
         rdap_module,
         "lookup_rdap",
         lambda resource, **kwargs: rdap_module.RdapResult(
-            url="https://rdap.example/domain/" + resource, status=200, headers={}, data=data
+            url="https://rdap.example/domain/" + resource,
+            status=200,
+            headers={},
+            data=data,
         ),
     )
 
@@ -179,7 +212,10 @@ def test_a_referral_chain_survives_into_the_result(monkeypatch) -> None:
         referrals=["whois.iana.org"],
     )
     second = whois.WhoisResult(
-        query="example.com", server="whois.iana.org", fields={"domain": ["COM"]}, referrals=[]
+        query="example.com",
+        server="whois.iana.org",
+        fields={"domain": ["COM"]},
+        referrals=[],
     )
     asked: list[str] = []
 
@@ -250,7 +286,9 @@ live = pytest.mark.skipif(
 
 @live
 def test_live_whois_for_a_reserved_domain() -> None:
-    result = whois.lookup_whois("example.org", server="whois.pir.org", follow_referrals=False)
+    result = whois.lookup_whois(
+        "example.org", server="whois.pir.org", follow_referrals=False
+    )
 
     assert result.error is None
     assert result.fields["domain name"][0].lower() == "example.org"

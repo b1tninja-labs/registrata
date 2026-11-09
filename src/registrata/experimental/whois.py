@@ -32,7 +32,9 @@ _KEY_VALUE_RE = re.compile(r"^\s*(?P<key>[^:]{1,80})\s*:\s*(?P<value>.*?)\s*$")
 # live PIR and IANA output do the same. Those lines are commentary, not registration data, and the
 # full text stays available in `raw` either way.
 _WHOIS_COMMENT_PREFIXES = ("%", "#", ">", "!")
-_WHOIS_URI_TAIL_RE = re.compile(r"(?:https?|ftps?|mailto|ldap[s]?|telnet|file)$", re.IGNORECASE)
+_WHOIS_URI_TAIL_RE = re.compile(
+    r"(?:https?|ftps?|mailto|ldap[s]?|telnet|file)$", re.IGNORECASE
+)
 _ASN_RE = re.compile(r"^(?:AS|ASN|autnum)?[-:\s]?(?P<asn>\d+)$", re.IGNORECASE)
 _DOMAIN_RE = re.compile(
     r"^(?=.{1,253}$)[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$"

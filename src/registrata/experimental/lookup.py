@@ -300,8 +300,12 @@ def lookup(
         breaker=breaker,
     )
 
-    if skip_reserved and result.kind == "domain" and _all_sources_public(
-        requested, rdap_base_url=rdap_base_url, whois_server=whois_server
+    if (
+        skip_reserved
+        and result.kind == "domain"
+        and _all_sources_public(
+            requested, rdap_base_url=rdap_base_url, whois_server=whois_server
+        )
     ):
         reason = special_use_reason(resource)
         if reason is not None:

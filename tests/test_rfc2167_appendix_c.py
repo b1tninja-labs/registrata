@@ -90,7 +90,9 @@ def test_no_implementation_specific_codes_have_been_sneaked_in() -> None:
     """Appendix C allows implementation-specific codes, but only with a 6 in the second position."""
     extra = {int(code) for code in ErrorCode} - set(APPENDIX_C)
     for code in extra:
-        assert str(code)[1] == "6", f"{code} is not a legal implementation-specific code"
+        assert str(code)[1] == "6", (
+            f"{code} is not a legal implementation-specific code"
+        )
 
 
 def test_the_informational_bands_are_the_ones_the_client_relies_on() -> None:

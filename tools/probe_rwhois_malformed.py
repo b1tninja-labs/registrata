@@ -16,6 +16,7 @@ if _SRC.is_dir():
 
 from registrata.banner import Version, parse_banner  # noqa: E402
 from registrata.errors import RwhoisError, RwhoisParseError, parse_error_line  # noqa: E402
+
 # A noqa for a multi-line import has to sit on the opening line; on the closing parenthesis ruff
 # does not honor it, and E402 fires on the `from` line.
 from registrata.protocol import (  # noqa: E402
