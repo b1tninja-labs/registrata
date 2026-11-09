@@ -1,0 +1,5 @@
+%info on
+Server maintenance 02:00-03:00 UTC; retry later.
+Contact hostmaster@example.net about the outage à la longue
+%info off
+%ok

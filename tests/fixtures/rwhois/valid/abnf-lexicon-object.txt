@@ -1,0 +1,14 @@
+domain:Class-Name:domain
+domain:ID:CONTACT-DNS-28.hostmaster.org
+domain:Auth-Area:198.51.100.194/32
+domain:Generic-Server:ns3.hostmaster.com
+domain:Primary-Server:198.51.100.154:44264
+domain:E-Mail:sy|&$@ns5.example.net
+domain:Register-Name:Cafþ Domain, Inc.
+domain:Punct-Value:Example!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+domain:Source:Source:RIPE
+domain:Created:20240318011152972
+domain:Numeric-Id;I:42
+domain:Tag-List;S:red,green
+domain:Explicit-Text;T:Test joltafari
+%ok

@@ -1,0 +1,7 @@
+-register on del c5~l1@subdomain.com
+Class-Name:domain
+ID:NETWORK-DNS-46.subdomain.com
+Auth-Area:nic.net
+Domain-Name:SLARTIBARTFAST.EXAMPLE.NET
+-register off
+%ok

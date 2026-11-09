@@ -1,0 +1,8 @@
+-register on add u3cf3xws@example.org
+Class-Name:domain
+ID:TEST-DNS-26.example.net
+Auth-Area:hostmaster.net
+Domain-Name:JOLTAFARI.EXAMPLE.NET
+-register off
+%register ID:TEST-DNS-26.example.net
+%ok

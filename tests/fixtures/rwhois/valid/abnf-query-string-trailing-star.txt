@@ -1,0 +1,5 @@
+deepthought*
+domain deepthought*
+deepthought
+domain deepthought
+%ok

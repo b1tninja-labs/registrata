@@ -1,0 +1,16 @@
+%soa authority:example.org
+%soa ttl:33213
+%soa refresh:2862
+%soa increment:4404
+%soa retry:68
+%soa serial:20170124084611571
+%soa tech-contact:mv~^crh@ns6.rwhois.net
+%soa admin-contact:d%1tr@ns4.example.org
+%soa hostmaster:a8ee38d@ns3.nic.org
+%soa primary:subdomain.net:50517
+%soa x-notify:Network deepthought
+%soa
+%soa authority:192.0.2.115/8
+%soa ttl:33213
+%soa
+%ok

@@ -1,0 +1,2 @@
+domain:Domain-Name:EXAMPLE-SLARTIBARTFAST.EXAMPLE.NET
+%ok

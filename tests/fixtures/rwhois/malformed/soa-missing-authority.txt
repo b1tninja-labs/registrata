@@ -1,0 +1,3 @@
+%soa ttl:86400
+%soa
+%ok

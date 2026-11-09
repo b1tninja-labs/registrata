@@ -1,0 +1,3 @@
+domain *slartibartfast
+domain *joltafari*
+%ok

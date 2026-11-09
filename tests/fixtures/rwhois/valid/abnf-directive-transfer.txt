@@ -1,0 +1,5 @@
+-xfer subdomain.com class=domain attribute=Domain-Name 20121203134348791
+-xfer 203.0.113.152/24 class=domain
+-xfer subdomain.com 20121203134348791
+-xfer subdomain.com
+%ok

@@ -1,0 +1,15 @@
+# Everything except the RFC 2167 wire transcripts is normalized to lf.
+*.py text eol=lf
+*.pyi text eol=lf
+*.md text eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.cfg text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Wire transcripts must keep crlf exactly as a server would send it:
+# tests/test_rwhois_corpus.py reads raw bytes and asserts crlf termination, and the
+# wire/ fixtures deliberately contain non-crlf and 8-bit payloads. This rule is last
+# because git applies the last matching pattern.
+tests/fixtures/rwhois/** -text

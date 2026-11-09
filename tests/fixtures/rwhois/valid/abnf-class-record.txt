@@ -1,0 +1,7 @@
+%class domain:description:Domain objects, one per registered domain
+%class domain:version:20290605104437687
+%class domain:x-indexed:Test vogon
+%class
+%class host:description:Host objects
+%class
+%ok

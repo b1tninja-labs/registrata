@@ -1,0 +1,3 @@
+%referral rwhois://master.a.example.net:4321/auth-area=a.example.net
+%referral rwhois://master.b.example.net:4321/auth-area=b.example.net
+%ok

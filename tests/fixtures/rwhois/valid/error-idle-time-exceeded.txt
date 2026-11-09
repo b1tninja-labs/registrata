@@ -1,0 +1,2 @@
+%rwhois V-1.5:00ffff:00 master.example.net (Example RWhoisd)
+%error 503 Idle Time Exceeded

@@ -1,0 +1,8 @@
+-security on request password QZ492068124uh
+Class-Name:domain
+_SEQ_643
+-security off
+-security on response pgp signed-encrypt 0xBC6C3426
+-security off
+-security on request x-skey domain-opaque-data
+%ok

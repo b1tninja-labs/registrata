@@ -1,0 +1,18 @@
+%rwhois V-1.1:e139f0:00 ns6.rwhois.com
+%status limit:73
+%class domain:description:Domain objects
+%class
+%schema domain:attribute:Class-Name
+%schema
+%soa authority:subdomain.net
+%soa
+%directive directive:quit
+%directive
+%display name:short
+%display
+%xfer domain:Class-Name:domain
+%xfer
+%referral rwhois://ns5.nic.com:46814/auth-area=subdomain.org
+%notify on
+Free form server commentary that no response family claims
+%ok

@@ -1,0 +1,12 @@
+%soa authority:example.net
+%soa serial:20240102030405000
+%soa ttl:86400
+%soa refresh:3600
+%soa retry:600
+%soa increment:300
+%soa primary:rwhois.example.net:4321
+%soa admin-contact:jane@example.net
+%soa tech-contact:support@example.net
+%soa hostmaster:hostmaster@example.net
+%soa
+%ok

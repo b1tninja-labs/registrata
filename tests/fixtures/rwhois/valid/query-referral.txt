@@ -1,0 +1,2 @@
+%referral rwhois://master.example.net:4321/auth-area=example.net
+%ok

@@ -1,0 +1,6 @@
+domain:Class-Name:domain
+domain:Domain-Name:ONE.EXAMPLE.NET
+
+domain:Class-Name:domain
+domain:Domain-Name:TWO.EXAMPLE.NET
+%ok

@@ -1,0 +1,6 @@
+domain Domain-Name=deepthought*
+Domain-Name=deepthought*
+domain slartibartfast and joltafari
+domain magrathea or slartibartfast
+vogon and deepthought or deepthought
+%ok

@@ -1,0 +1,6 @@
+-notify badref rwhois://ns5.rwhois.net:31280/auth-area=hostmaster.org domain joltafari*
+-notify recurref rwhois://203.0.113.91:20410/auth-area=203.0.113.206/32 eddie
+-notify update 203.0.113.91:20410:hostmaster.org
+-notify inssec 203.0.113.91:20410:hostmaster.org
+-notify delsec 203.0.113.91:20410:hostmaster.org
+%ok

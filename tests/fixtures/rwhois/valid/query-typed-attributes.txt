@@ -1,0 +1,8 @@
+person:Class-Name:person
+person:ID:12345-EXAMPLE
+person:Auth-Area:example.net
+person:First-Name;T:Jane
+person:Last-Name;T:Doe
+person:Numeric-Id;I:42
+person:Tag-List;S:red,green
+%ok

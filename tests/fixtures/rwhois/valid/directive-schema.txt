@@ -1,0 +1,13 @@
+%schema map:attribute:Class-Name
+%schema map:description:Type of the object
+%schema map:type:TEXT
+%schema map:format:re:[a-zA-Z0-9-]+
+%schema map:indexed:ON
+%schema map:required:ON
+%schema
+%schema map:attribute:Map-Description
+%schema map:description:A description of the map entry
+%schema map:type:TEXT
+%schema map:multi-line:OFF
+%schema
+%ok

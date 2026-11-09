@@ -1,0 +1,2 @@
+%referral rwhois://m.example.net:port/auth-area=example.net
+%ok

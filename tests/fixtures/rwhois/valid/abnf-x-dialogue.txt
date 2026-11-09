@@ -1,0 +1,5 @@
+-X-status slartibartfast 518
+-X-status
+X-STATUS ok
+elapsed 4ms on the ring
+%ok

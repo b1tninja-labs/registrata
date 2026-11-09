@@ -1,0 +1,8 @@
+%status limit:551
+%status holdconnect:on
+%status forward:off
+%status authority:761
+%status display:standard menu
+%status contact:u{9kjv@example.org
+%status Server-Version:Source:RIPE
+%ok

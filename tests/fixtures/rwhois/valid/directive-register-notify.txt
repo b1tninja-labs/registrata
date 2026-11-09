@@ -1,0 +1,3 @@
+%register Example-Handle:ON
+%notify on
+%ok

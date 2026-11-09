@@ -1,0 +1,6 @@
+%referral rwhois://198.51.100.253:15559/auth-area=192.0.2.136/24
+%referral rwhois://ns5.subdomain.com:7225/auth-area=hostmaster.net
+
+domain:Class-Name:domain
+domain:Domain-Name:MAGRATHEA.EXAMPLE.NET
+%ok

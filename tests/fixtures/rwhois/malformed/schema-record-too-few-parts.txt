@@ -1,0 +1,2 @@
+%schema map:attribute
+%ok

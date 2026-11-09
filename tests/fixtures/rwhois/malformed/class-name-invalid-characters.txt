@@ -1,0 +1,2 @@
+dom ain:Handle:EXAMPLE
+%ok

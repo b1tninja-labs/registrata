@@ -1,0 +1,5 @@
+%xfer domain:Class-Name:domain
+%xfer domain:ID:TRANSFER-EXAMPLE
+%xfer domain:Auth-Area:example.net
+
+%ok

@@ -1,0 +1,7 @@
+%status limit:20
+%status holdconnect:OFF
+%status forward:OFF
+%status objects:12345
+%status display:dump
+%status contact:joe@rwhois.net
+%ok

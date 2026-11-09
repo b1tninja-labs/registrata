@@ -1,0 +1,7 @@
+%directive directive:rwhois
+%directive description:RWhois directive
+%directive
+%directive directive:quit
+%directive description:Quit connection
+%directive
+%ok

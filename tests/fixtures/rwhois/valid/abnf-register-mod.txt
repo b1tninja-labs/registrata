@@ -1,0 +1,13 @@
+-register on mod b'nss@ns5.rwhois.org
+Class-Name:domain
+ID:CONTACT-DNS-04.rwhois.com
+Auth-Area:hostmaster.net
+Domain-Name:MARVIN.EXAMPLE.NET
+_NEW_
+Class-Name:domain
+ID:CONTACT-DNS-04.rwhois.com
+Auth-Area:hostmaster.net
+Domain-Name:MARVIN.EXAMPLE.NET
+-register off
+%register Updated:20200508143832482
+%ok

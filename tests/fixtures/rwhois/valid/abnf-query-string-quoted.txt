@@ -1,0 +1,3 @@
+domain "deepthought vogon"
+domain "deepthought	vogon"
+%ok

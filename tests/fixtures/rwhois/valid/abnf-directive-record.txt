@@ -1,0 +1,7 @@
+%directive directive:limit
+%directive description:RWhois directive
+%directive x-available:Source:RIPE
+%directive
+%directive directive:x-hold
+%directive
+%ok

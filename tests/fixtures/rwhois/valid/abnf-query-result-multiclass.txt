@@ -1,0 +1,9 @@
+domain:Class-Name:domain
+domain:ID:TEST-DNS-05.hostmaster.net
+domain:Auth-Area:rwhois.org
+domain:Domain-Name:MAGRATHEA.EXAMPLE.NET
+
+network:Class-Name:network
+network:ID:HOST-DNS-29.subdomain.com
+network:Auth-Area:198.51.100.139/16
+%ok

@@ -1,0 +1,2 @@
+%rwhois V-1.0:003fff:00,V-1.5:00ffff:00 rwhois.example.net:4321 (Example RWhoisd 2.1.4)
+%ok

@@ -1,0 +1,20 @@
+-rwhois V-1.5
+-rwhois V-1.5 (registrata V-1.5)
+-class nic.com domain host
+-class 203.0.113.154/24
+-directive quit schema
+-directive
+-display dump
+-display
+-holdconnect off
+-holdconnect off
+%ok
+-limit 3458
+%ok
+-schema nic.com domain
+-soa 203.0.113.154/24
+-soa
+-status
+-quit
+%ok
+%ok

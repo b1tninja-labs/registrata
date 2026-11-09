@@ -1,0 +1,5 @@
+%display name:long
+%display domain:Domain-Name:Example marvin
+%display network:Network-Name:Cafþ Network, Inc.
+%display
+%ok

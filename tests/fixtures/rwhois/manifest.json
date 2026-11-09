@@ -1,0 +1,2469 @@
+{
+  "cases": [
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "capability-id",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "extra-id",
+        "hex-digit",
+        "host-name",
+        "id-char",
+        "implementation",
+        "lf",
+        "ok-response",
+        "response",
+        "response-id",
+        "rwhois-banner",
+        "rwhois-response",
+        "space",
+        "version",
+        "version-list",
+        "version-number"
+      ],
+      "expect": {
+        "banner_best_version": "V-1.5",
+        "banner_capabilities": [
+          "SCHEMA",
+          "SOA",
+          "STATUS",
+          "XFER",
+          "REGISTER"
+        ],
+        "banner_host": "master.rwhois.net",
+        "banner_implementation": "(Network Solutions V-1.5)",
+        "banner_versions": [
+          "V-1.5"
+        ],
+        "banners": 1,
+        "ok": true
+      },
+      "file": "valid/banner-rfc-example.txt",
+      "id": "banner-rfc-example",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "roundtrip": [
+        "banner"
+      ],
+      "source": "banner quoted verbatim from RFC 2167 section 3.1.7"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "capability-id",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "extra-id",
+        "hex-digit",
+        "id-char",
+        "implementation",
+        "lf",
+        "ok-response",
+        "response",
+        "response-id",
+        "space",
+        "version",
+        "version-list",
+        "version-number"
+      ],
+      "expect": {
+        "banner_best_version": "V-1.5",
+        "banner_host": "rwhois.example.net:4321",
+        "banner_versions": [
+          "V-1.0",
+          "V-1.5"
+        ],
+        "banners": 1,
+        "ok": true
+      },
+      "file": "valid/banner-multi-version.txt",
+      "id": "banner-multi-version",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "roundtrip": [
+        "banner"
+      ],
+      "source": "lowest-numbered version first as required by RFC 2167 section 3.1.9"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "authority-area",
+        "class-name",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "email",
+        "email-char",
+        "host-name",
+        "id-char",
+        "lf",
+        "ok-response",
+        "query-line",
+        "query-record",
+        "response",
+        "rwhois-query-result",
+        "space"
+      ],
+      "expect": {
+        "attribute_count": 15,
+        "attributes": {
+          "Domain-Name": [
+            "EXAMPLE.NET"
+          ],
+          "Register-Name": [
+            "Example, Inc."
+          ],
+          "Statistic": [
+            "Source:ARIN"
+          ]
+        },
+        "auth_area": "example.net",
+        "object_class": "domain",
+        "objects": 1,
+        "ok": true,
+        "record_id": "EXAMPLE-DNS-ORG"
+      },
+      "file": "valid/query-domain-object.txt",
+      "id": "query-domain-object",
+      "kind": "valid",
+      "parser": "query",
+      "recorded": false,
+      "roundtrip": [
+        "objects"
+      ],
+      "source": "single domain object; the Statistic value legitimately contains a colon"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "id-char",
+        "lf",
+        "ok-response",
+        "query-line",
+        "query-record",
+        "response",
+        "rwhois-query-result",
+        "type-char"
+      ],
+      "expect": {
+        "attribute_types": {
+          "Class-Name": "T",
+          "First-Name": "T",
+          "Numeric-Id": "I",
+          "Tag-List": "S"
+        },
+        "object_class": "person",
+        "objects": 1,
+        "ok": true
+      },
+      "file": "valid/query-typed-attributes.txt",
+      "id": "query-typed-attributes",
+      "kind": "valid",
+      "parser": "query",
+      "recorded": false,
+      "roundtrip": [
+        "objects"
+      ],
+      "source": "attribute type suffixes ;T ;I ;S"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "cr",
+        "crlf",
+        "dns-char",
+        "id-char",
+        "lf",
+        "ok-response",
+        "query-line",
+        "query-record",
+        "response",
+        "rwhois-query-result"
+      ],
+      "expect": {
+        "domain_names": [
+          "ONE.EXAMPLE.NET",
+          "TWO.EXAMPLE.NET"
+        ],
+        "objects": 2,
+        "ok": true
+      },
+      "file": "valid/query-multiple-objects.txt",
+      "id": "query-multiple-objects",
+      "kind": "valid",
+      "parser": "query",
+      "recorded": false,
+      "roundtrip": [
+        "objects"
+      ],
+      "source": "objects separated by an empty line"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "authority-area",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "host-name",
+        "host-port",
+        "id-char",
+        "lf",
+        "ok-response",
+        "referral-line",
+        "referral-record",
+        "referral-url",
+        "response",
+        "rwhois-query-result",
+        "space"
+      ],
+      "expect": {
+        "objects": 0,
+        "ok": true,
+        "referral_keys": [
+          [
+            "master.example.net",
+            4321,
+            "example.net"
+          ]
+        ],
+        "referrals": 1
+      },
+      "file": "valid/query-referral.txt",
+      "id": "query-referral",
+      "kind": "valid",
+      "parser": "query",
+      "recorded": false,
+      "roundtrip": [
+        "referrals"
+      ],
+      "source": "single referral URL in RFC 2167 form"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "authority-area",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "host-name",
+        "host-port",
+        "id-char",
+        "lf",
+        "ok-response",
+        "referral-line",
+        "referral-record",
+        "referral-url",
+        "response",
+        "rwhois-query-result",
+        "space"
+      ],
+      "expect": {
+        "ok": true,
+        "referral_keys": [
+          [
+            "master.a.example.net",
+            4321,
+            "a.example.net"
+          ],
+          [
+            "master.b.example.net",
+            4321,
+            "b.example.net"
+          ]
+        ],
+        "referrals": 2
+      },
+      "file": "valid/query-referral-chain.txt",
+      "id": "query-referral-chain",
+      "kind": "valid",
+      "parser": "query",
+      "recorded": false,
+      "roundtrip": [
+        "referrals"
+      ],
+      "source": "several referrals in one response"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "authority-area",
+        "class-name",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "host-name",
+        "host-port",
+        "id-char",
+        "lf",
+        "ok-response",
+        "query-line",
+        "query-record",
+        "referral-line",
+        "referral-record",
+        "referral-url",
+        "response",
+        "rwhois-query-result",
+        "space"
+      ],
+      "expect": {
+        "objects": 1,
+        "ok": true,
+        "referrals": 1
+      },
+      "file": "valid/query-objects-and-referral.txt",
+      "id": "query-objects-and-referral",
+      "kind": "valid",
+      "parser": "query",
+      "recorded": false,
+      "source": "objects and a referral mixed in one response"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "digit",
+        "error-code",
+        "error-response",
+        "error-text",
+        "id-char",
+        "lf",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "error_class": "NoObjectsFound",
+        "error_code": 230,
+        "error_text": "No Objects Found",
+        "objects": 0,
+        "ok": false
+      },
+      "file": "valid/query-no-objects.txt",
+      "id": "query-no-objects",
+      "kind": "valid",
+      "parser": "query",
+      "recorded": false,
+      "roundtrip": [
+        "error_line"
+      ],
+      "source": "RFC 2167 Appendix C code 230"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "capability-id",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "error-code",
+        "error-response",
+        "error-text",
+        "extra-id",
+        "hex-digit",
+        "host-name",
+        "id-char",
+        "implementation",
+        "lf",
+        "response",
+        "response-id",
+        "rwhois-banner",
+        "space",
+        "version",
+        "version-list",
+        "version-number"
+      ],
+      "expect": {
+        "banners": 1,
+        "error_class": "IdleTimeExceeded",
+        "error_code": 503,
+        "ok": false
+      },
+      "file": "valid/error-idle-time-exceeded.txt",
+      "id": "error-idle-time-exceeded",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "roundtrip": [
+        "error_line"
+      ],
+      "source": "banner followed by Appendix C code 503"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "email",
+        "email-char",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space",
+        "status-line",
+        "status-response"
+      ],
+      "expect": {
+        "ok": true,
+        "status": {
+          "contact": "joe@rwhois.net",
+          "holdconnect": "OFF",
+          "limit": "20",
+          "objects": "12345"
+        }
+      },
+      "file": "valid/directive-status.txt",
+      "id": "directive-status",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "roundtrip": [
+        "status"
+      ],
+      "source": "status lines quoted verbatim from RFC 2167 section 3.3"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "cr",
+        "crlf",
+        "digit",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "schema-line",
+        "schema-record",
+        "schema-response",
+        "space"
+      ],
+      "expect": {
+        "ok": true,
+        "schema_attributes": [
+          "Class-Name",
+          "Map-Description"
+        ],
+        "schema_classes": [
+          "map"
+        ],
+        "schema_groups": 2
+      },
+      "file": "valid/directive-schema.txt",
+      "id": "directive-schema",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "schema records per RFC 2167 section 3.3; each record ends with a bare %schema"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "class-line",
+        "class-name",
+        "class-record",
+        "class-response",
+        "cr",
+        "crlf",
+        "day",
+        "digit",
+        "dns-char",
+        "hour",
+        "id-char",
+        "lf",
+        "meta-value",
+        "milli-second",
+        "minute",
+        "month",
+        "ok-response",
+        "response",
+        "second",
+        "space",
+        "time-stamp",
+        "year"
+      ],
+      "expect": {
+        "class_descriptions": {
+          "domain": "Domain information"
+        },
+        "class_names": [
+          "domain",
+          "host"
+        ],
+        "class_versions": {
+          "domain": "19970103101232000"
+        },
+        "ok": true
+      },
+      "file": "valid/directive-class.txt",
+      "id": "directive-class",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "class records per RFC 2167 section 3.3, domain and host, verbatim values"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "authority-area",
+        "cr",
+        "crlf",
+        "day",
+        "digit",
+        "dns-char",
+        "email",
+        "email-char",
+        "host-name",
+        "host-port",
+        "hour",
+        "id-char",
+        "lf",
+        "milli-second",
+        "minute",
+        "month",
+        "ok-response",
+        "response",
+        "second",
+        "soa-line",
+        "soa-record",
+        "soa-response",
+        "space",
+        "time-stamp",
+        "year"
+      ],
+      "expect": {
+        "ok": true,
+        "soa_fields": {
+          "authority": "example.net",
+          "hostmaster": "hostmaster@example.net",
+          "primary": "rwhois.example.net:4321",
+          "retry": "600",
+          "serial": "20240102030405000",
+          "ttl": "86400"
+        },
+        "soa_records": 1
+      },
+      "file": "valid/directive-soa.txt",
+      "id": "directive-soa",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "soa-record with the canonical soa-line fields, ended by a bare %soa"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "info_messages": [
+          "Server maintenance window 02:00-03:00 UTC.",
+          "%ok"
+        ],
+        "ok": true
+      },
+      "file": "valid/directive-info-block.txt",
+      "id": "directive-info-block",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "info block per RFC 2167 section 3.1.9; its body contains a line that looks like a terminator, which is legal text because the block is closed properly"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "cr",
+        "crlf",
+        "dns-char",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space",
+        "xfer-line"
+      ],
+      "expect": {
+        "object_class": "domain",
+        "ok": true,
+        "xfer_objects": 1
+      },
+      "file": "valid/directive-xfer.txt",
+      "id": "directive-xfer",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "xfer group of object lines"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "directive-line",
+        "directive-name",
+        "directive-record",
+        "directive-response",
+        "dns-char",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "directive_groups": 2,
+        "directive_names": [
+          "rwhois",
+          "quit"
+        ],
+        "ok": true,
+        "other_lines": 0
+      },
+      "file": "valid/directive-directive-list.txt",
+      "id": "directive-directive-list",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "directive records quoted verbatim from RFC 2167 section 3.3"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "cr",
+        "crlf",
+        "display-line",
+        "dns-char",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "display_groups": 1,
+        "ok": true
+      },
+      "file": "valid/directive-display.txt",
+      "id": "directive-display",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "parser-tolerance case: RFC 2167 acknowledges the display directive but does not fix one normative response shape, so this pins how this parser groups %display lines rather than claiming an RFC example"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 1,
+        "register_pairs": {
+          "Example-Handle": "ON"
+        }
+      },
+      "file": "valid/directive-register-notify.txt",
+      "id": "directive-register-notify",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "parser-tolerance case: %register is stored as key/value and %notify is kept verbatim as an unmatched line"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid info block start"
+      },
+      "file": "malformed/info-block-missing-on.txt",
+      "id": "info-block-missing-on",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid info block start"
+      },
+      "file": "malformed/info-off-without-on.txt",
+      "id": "info-off-without-on",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "class-name",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "missing attribute separator"
+      },
+      "file": "malformed/attribute-missing-value.txt",
+      "id": "attribute-missing-value",
+      "kind": "malformed",
+      "parser": "query",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "missing class separator"
+      },
+      "file": "malformed/attribute-missing-class-separator.txt",
+      "id": "attribute-missing-class-separator",
+      "kind": "malformed",
+      "parser": "query",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid class name"
+      },
+      "file": "malformed/class-name-invalid-characters.txt",
+      "id": "class-name-invalid-characters",
+      "kind": "malformed",
+      "parser": "query",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid attribute type character"
+      },
+      "file": "malformed/attribute-bad-type-suffix.txt",
+      "id": "attribute-bad-type-suffix",
+      "kind": "malformed",
+      "parser": "query",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "authority-area",
+        "cr",
+        "crlf",
+        "dns-char",
+        "host-name",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "port must be numeric"
+      },
+      "file": "malformed/referral-nonnumeric-port.txt",
+      "id": "referral-nonnumeric-port",
+      "kind": "malformed",
+      "parser": "query",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "authority-area",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "host-name",
+        "host-port",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid referral port"
+      },
+      "file": "malformed/referral-port-out-of-range.txt",
+      "id": "referral-port-out-of-range",
+      "kind": "malformed",
+      "parser": "query",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "authority-area",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "host-name",
+        "host-port",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "must start with"
+      },
+      "file": "malformed/referral-wrong-scheme.txt",
+      "id": "referral-wrong-scheme",
+      "kind": "malformed",
+      "parser": "query",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "host-name",
+        "host-port",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "missing '/auth-area='"
+      },
+      "file": "malformed/referral-missing-auth-area.txt",
+      "id": "referral-missing-auth-area",
+      "kind": "malformed",
+      "parser": "query",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "lf",
+        "ok-response",
+        "response"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid referral line"
+      },
+      "file": "malformed/referral-bare-line.txt",
+      "id": "referral-bare-line",
+      "kind": "malformed",
+      "parser": "query",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "capability-id",
+        "cr",
+        "crlf",
+        "digit",
+        "extra-id",
+        "hex-digit",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "response-id",
+        "space",
+        "version",
+        "version-number"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "banner missing host"
+      },
+      "file": "malformed/banner-missing-host.txt",
+      "id": "banner-missing-host",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "host-name",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space",
+        "version",
+        "version-number"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid capability id"
+      },
+      "file": "malformed/banner-bad-capability-id.txt",
+      "id": "banner-bad-capability-id",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "host-name",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space",
+        "version",
+        "version-number"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid capability id"
+      },
+      "file": "malformed/banner-short-capability-id.txt",
+      "id": "banner-short-capability-id",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "digit",
+        "error-text",
+        "id-char",
+        "lf",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid error response line"
+      },
+      "file": "malformed/error-code-wrong-width.txt",
+      "id": "error-code-wrong-width",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "error-text",
+        "id-char",
+        "lf",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid error response line"
+      },
+      "file": "malformed/error-code-nonnumeric.txt",
+      "id": "error-code-nonnumeric",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid status line"
+      },
+      "file": "malformed/status-missing-colon.txt",
+      "id": "status-missing-colon",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "class-name",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid %class line"
+      },
+      "file": "malformed/class-record-too-few-parts.txt",
+      "id": "class-record-too-few-parts",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "class-name",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid %schema line"
+      },
+      "file": "malformed/schema-record-too-few-parts.txt",
+      "id": "schema-record-too-few-parts",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "invalid register line"
+      },
+      "file": "malformed/register-missing-colon.txt",
+      "id": "register-missing-colon",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "class-name",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "missing attribute separator"
+      },
+      "file": "malformed/xfer-missing-attribute-separator.txt",
+      "id": "xfer-missing-attribute-separator",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "digit",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "soa-line",
+        "soa-record",
+        "space"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "missing authority"
+      },
+      "file": "malformed/soa-missing-authority.txt",
+      "id": "soa-missing-authority",
+      "kind": "malformed",
+      "parser": "response",
+      "recorded": false,
+      "source": "synthesized to RFC 2167 grammar"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "query-line",
+        "response"
+      ],
+      "expect": {
+        "raises": "RwhoisParseError",
+        "reason": "object class mismatch"
+      },
+      "file": "malformed/object-class-mismatch-mid-record.txt",
+      "id": "object-class-mismatch-mid-record",
+      "kind": "malformed",
+      "parser": "query",
+      "recorded": false,
+      "source": "RFC 2167 objects are single-class, so a second class mid-record is rejected"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "class-name",
+        "cr",
+        "crlf",
+        "dns-char",
+        "id-char",
+        "lf"
+      ],
+      "expect": {
+        "max_line_bytes": 65536,
+        "raises": "RwhoisProtocolError",
+        "reason": "exceeds maximum length"
+      },
+      "file": "wire/oversized-line-memory-bomb.txt",
+      "id": "oversized-line-memory-bomb",
+      "kind": "wire",
+      "parser": "wire",
+      "recorded": false,
+      "source": "a single line far above the reader limit must be refused, not buffered"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "cr",
+        "crlf",
+        "dns-char",
+        "id-char",
+        "lf",
+        "query-line",
+        "space"
+      ],
+      "expect": {
+        "decoded_prefix": "domain:Register-Name:Caf\u00e9 Example"
+      },
+      "file": "wire/non-ascii-octets-are-8-bit-safe.txt",
+      "id": "non-ascii-octets-are-8-bit-safe",
+      "kind": "wire",
+      "parser": "wire",
+      "recorded": false,
+      "source": "RFC 2167 section 3.1.9 makes this an 8-bit protocol: octets 128-255 must decode"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "lf",
+        "ok-response",
+        "response"
+      ],
+      "expect": {
+        "decoded_exact": "%ok"
+      },
+      "file": "wire/bare-lf-terminated.txt",
+      "id": "bare-lf-terminated",
+      "kind": "wire",
+      "parser": "wire",
+      "recorded": false,
+      "source": "a server that forgets the CR must still be readable"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "authority-area",
+        "class-name",
+        "cr",
+        "crlf",
+        "day",
+        "digit",
+        "dns-char",
+        "email",
+        "email-char",
+        "hex-digit",
+        "host-name",
+        "host-port",
+        "hour",
+        "id-char",
+        "ip-address",
+        "lf",
+        "milli-second",
+        "minute",
+        "month",
+        "object-id",
+        "ok-response",
+        "query-line",
+        "query-record",
+        "response",
+        "rwhois-query-result",
+        "second",
+        "space",
+        "time-stamp",
+        "type-char",
+        "year"
+      ],
+      "expect": {
+        "attribute_count": 13,
+        "attribute_types": {
+          "Class-Name": "T",
+          "Explicit-Text": "T",
+          "Numeric-Id": "I",
+          "Tag-List": "S"
+        },
+        "attributes": {
+          "Auth-Area": [
+            "198.51.100.194/32"
+          ],
+          "Created": [
+            "20240318011152972"
+          ],
+          "E-Mail": [
+            "sy|&$@ns5.example.net"
+          ],
+          "ID": [
+            "CONTACT-DNS-28.hostmaster.org"
+          ],
+          "Primary-Server": [
+            "198.51.100.154:44264"
+          ],
+          "Punct-Value": [
+            "Example!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+          ],
+          "Register-Name": [
+            "Caf\u00fe Domain, Inc."
+          ],
+          "Source": [
+            "Source:RIPE"
+          ]
+        },
+        "auth_area": "198.51.100.194/32",
+        "object_class": "domain",
+        "objects": 1,
+        "ok": true,
+        "record_id": "CONTACT-DNS-28.hostmaster.org"
+      },
+      "file": "valid/abnf-lexicon-object.txt",
+      "id": "abnf-lexicon-object",
+      "kind": "valid",
+      "parser": "query",
+      "recorded": false,
+      "roundtrip": [
+        "objects"
+      ],
+      "source": "attribute values spanning any-char: 8-bit octets, punctuation, and an embedded colon"
+    },
+    {
+      "abnf": [
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "cr",
+        "crlf",
+        "lf",
+        "ok-response",
+        "query-line",
+        "response"
+      ],
+      "expect": {
+        "decoded_exact": "domain:Any-Char:\u0080\u00a0\u00c7\u00e9\u00f0\u00fe\u00ff"
+      },
+      "file": "wire/abnf-wire-octets.txt",
+      "id": "abnf-wire-octets",
+      "kind": "wire",
+      "parser": "wire",
+      "recorded": false,
+      "source": "any-char is octets 1..255, so 0x80-0xff are ordinary value bytes on the wire"
+    },
+    {
+      "abnf": [
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "lf",
+        "ok-response",
+        "query-line",
+        "response"
+      ],
+      "expect": {
+        "decoded_exact": "domain:Domain-Name:EXAMPLE-SLARTIBARTFAST.EXAMPLE.NET"
+      },
+      "file": "wire/abnf-wire-bare-lf.txt",
+      "id": "abnf-wire-bare-lf",
+      "kind": "wire",
+      "parser": "wire",
+      "recorded": false,
+      "source": "bare-LF terminated transcript: lf is its own production and crlf is absent"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "digit",
+        "error-code",
+        "error-response",
+        "error-text",
+        "lf",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "error_class": "NotAuthorizedForDirective",
+        "error_code": 401,
+        "error_text": "Not authorized for directive \u00e9",
+        "ok": false
+      },
+      "file": "valid/abnf-response-error.txt",
+      "id": "abnf-response-error",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "roundtrip": [
+        "error_line"
+      ],
+      "source": "error-response with a three digit Appendix C code; the text carries an 8-bit octet"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "digit",
+        "info-response",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "info_messages": [
+          "Server maintenance 02:00-03:00 UTC; retry later.",
+          "Contact hostmaster@example.net about the outage \u00e0 la longue"
+        ],
+        "ok": true
+      },
+      "file": "valid/abnf-response-info-block.txt",
+      "id": "abnf-response-info-block",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "info-response block: body is any-char text, closed by %info off before the response"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "capability-id",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "extra-id",
+        "hex-digit",
+        "host-name",
+        "id-char",
+        "implementation",
+        "lf",
+        "ok-response",
+        "response",
+        "response-id",
+        "rwhois-banner",
+        "rwhois-response",
+        "space",
+        "version",
+        "version-list",
+        "version-number"
+      ],
+      "expect": {
+        "banner_best_version": "V-1.1",
+        "banner_capabilities": [
+          "SCHEMA",
+          "SOA",
+          "STATUS",
+          "XFER",
+          "REGISTER"
+        ],
+        "banner_host": "ns7.hostmaster.org",
+        "banner_implementation": "(Example RWhoisd V-1.1)",
+        "banner_versions": [
+          "V-1.1",
+          "V-1.1"
+        ],
+        "banners": 2,
+        "ok": true
+      },
+      "file": "valid/abnf-banner-versions.txt",
+      "id": "abnf-banner-versions",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "roundtrip": [
+        "banner"
+      ],
+      "source": "version-list with the bare and capability-qualified version alternates; the banner host is a host-name, which is why no port appears in it"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "class-line",
+        "class-name",
+        "class-record",
+        "class-response",
+        "cr",
+        "crlf",
+        "day",
+        "digit",
+        "dns-char",
+        "hour",
+        "id-char",
+        "lf",
+        "meta-field",
+        "meta-value",
+        "milli-second",
+        "minute",
+        "month",
+        "ok-response",
+        "response",
+        "second",
+        "space",
+        "time-stamp",
+        "year"
+      ],
+      "expect": {
+        "class_descriptions": {
+          "domain": "Domain objects, one per registered domain",
+          "host": "Host objects"
+        },
+        "class_names": [
+          "domain",
+          "host"
+        ],
+        "class_versions": {
+          "domain": "20290605104437687"
+        },
+        "ok": true
+      },
+      "file": "valid/abnf-class-record.txt",
+      "id": "abnf-class-record",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "class-line in each of its three alternates (description, version time-stamp, meta-field/meta-value), two records each closed by a bare %class"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "cr",
+        "crlf",
+        "directive-line",
+        "directive-name",
+        "directive-record",
+        "directive-response",
+        "id-char",
+        "lf",
+        "meta-value",
+        "ok-response",
+        "query-char",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "directive_groups": 2,
+        "directive_names": [
+          "limit",
+          "x-hold"
+        ],
+        "ok": true
+      },
+      "file": "valid/abnf-directive-record.txt",
+      "id": "abnf-directive-record",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "directive-record with the description alternate and an attribute-name/value alternate, closed by a bare %directive"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "cr",
+        "crlf",
+        "display-line",
+        "display-name",
+        "display-record",
+        "display-response",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "display_groups": 1,
+        "ok": true
+      },
+      "file": "valid/abnf-display-record.txt",
+      "id": "abnf-display-record",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "display-record: RFC 2167 leaves the display shape to the server, so this pins the name/attribute grouping that a bare %display closes"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "class-name",
+        "cr",
+        "crlf",
+        "digit",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "schema-line",
+        "schema-record",
+        "schema-response",
+        "space"
+      ],
+      "expect": {
+        "ok": true,
+        "schema_attributes": [
+          "Class-Name",
+          "Domain-Name"
+        ],
+        "schema_classes": [
+          "domain"
+        ],
+        "schema_groups": 2
+      },
+      "file": "valid/abnf-schema-record.txt",
+      "id": "abnf-schema-record",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "schema-record per attribute: each attribute of a class is its own record, closed by a bare %schema, which is why the terminator rather than the class names the group"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "authority-area",
+        "cr",
+        "crlf",
+        "day",
+        "digit",
+        "dns-char",
+        "email",
+        "email-char",
+        "host-name",
+        "host-port",
+        "hour",
+        "id-char",
+        "lf",
+        "milli-second",
+        "minute",
+        "month",
+        "ok-response",
+        "response",
+        "second",
+        "soa-line",
+        "soa-record",
+        "soa-response",
+        "space",
+        "time-stamp",
+        "year"
+      ],
+      "expect": {
+        "ok": true,
+        "soa_fields": {
+          "admin-contact": "d%1tr@ns4.example.org",
+          "authority": "example.org",
+          "hostmaster": "a8ee38d@ns3.nic.org",
+          "increment": "4404",
+          "primary": "subdomain.net:50517",
+          "refresh": "2862",
+          "retry": "68",
+          "serial": "20170124084611571",
+          "tech-contact": "mv~^crh@ns6.rwhois.net",
+          "ttl": "33213"
+        },
+        "soa_records": 2
+      },
+      "file": "valid/abnf-soa-record.txt",
+      "id": "abnf-soa-record",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "soa-line in every alternate: authority, the four digit timers, the serial time-stamp, three e-mails, a host-port primary, and one extension field"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "cr",
+        "crlf",
+        "digit",
+        "email",
+        "email-char",
+        "id-char",
+        "lf",
+        "ok-response",
+        "on-off",
+        "response",
+        "space",
+        "status-line",
+        "status-response"
+      ],
+      "expect": {
+        "ok": true,
+        "status": {
+          "Server-Version": "Source:RIPE",
+          "authority": "761",
+          "contact": "u{9kjv@example.org",
+          "display": "standard menu",
+          "forward": "off",
+          "holdconnect": "on",
+          "limit": "551"
+        }
+      },
+      "file": "valid/abnf-status-record.txt",
+      "id": "abnf-status-record",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "roundtrip": [
+        "status"
+      ],
+      "source": "status-line in all seven alternates; on-off is lower case as Appendix B spells it, which is not how the RFC's own section 3.3 example prints it"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "authority-area",
+        "class-name",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "id-char",
+        "lf",
+        "object-id",
+        "ok-response",
+        "response",
+        "space",
+        "xfer-line",
+        "xfer-record",
+        "xfer-response"
+      ],
+      "expect": {
+        "object_class": "domain",
+        "ok": true,
+        "record_id": "DOMAIN-DNS-95.hostmaster.net",
+        "xfer_objects": 2
+      },
+      "file": "valid/abnf-xfer-record.txt",
+      "id": "abnf-xfer-record",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "xfer-record: transfer object lines, each record ended by a bare %xfer, so the groups are told apart by their terminator rather than by a blank line"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "authority-area",
+        "class-name",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "id-char",
+        "lf",
+        "object-id",
+        "ok-response",
+        "query-line",
+        "query-record",
+        "response",
+        "rwhois-query-result"
+      ],
+      "expect": {
+        "attribute_count": 4,
+        "auth_area": "rwhois.org",
+        "domain_names": [
+          "MAGRATHEA.EXAMPLE.NET",
+          null
+        ],
+        "object_class": "domain",
+        "objects": 2,
+        "ok": true,
+        "record_id": "TEST-DNS-05.hostmaster.net"
+      },
+      "file": "valid/abnf-query-result-multiclass.txt",
+      "id": "abnf-query-result-multiclass",
+      "kind": "valid",
+      "parser": "query",
+      "recorded": false,
+      "roundtrip": [
+        "objects"
+      ],
+      "source": "a blank line separates records, so a domain record and a network record may share one response; a class change inside a record is still rejected"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "authority-area",
+        "class-name",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "host-name",
+        "host-port",
+        "id-char",
+        "ip-address",
+        "lf",
+        "ok-response",
+        "query-line",
+        "query-record",
+        "referral-line",
+        "referral-record",
+        "referral-url",
+        "response",
+        "rwhois-query-result",
+        "space"
+      ],
+      "expect": {
+        "domain_names": [
+          "MAGRATHEA.EXAMPLE.NET"
+        ],
+        "objects": 1,
+        "ok": true,
+        "referral_keys": [
+          [
+            "198.51.100.253",
+            15559,
+            "192.0.2.136/24"
+          ],
+          [
+            "ns5.subdomain.com",
+            7225,
+            "hostmaster.net"
+          ]
+        ],
+        "referrals": 2
+      },
+      "file": "valid/abnf-query-result-referrals.txt",
+      "id": "abnf-query-result-referrals",
+      "kind": "valid",
+      "parser": "query",
+      "recorded": false,
+      "roundtrip": [
+        "referrals"
+      ],
+      "source": "referral-record of two consecutive referral lines, one with a numeric host-port and one with a host-name, then a partial object record"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "class-name",
+        "cr",
+        "crlf",
+        "dns-char",
+        "id-char",
+        "lf",
+        "ok-response",
+        "query",
+        "query-char",
+        "query-string",
+        "response",
+        "rwhois-query",
+        "space"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 4
+      },
+      "file": "valid/abnf-query-string-trailing-star.txt",
+      "id": "abnf-query-string-trailing-star",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "query-string with the trailing wildcard both readings agree on; each client line is also round-tripped through registrata.query while the case is built"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "class-name",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "query",
+        "query-char",
+        "query-string",
+        "response",
+        "rwhois-query",
+        "space"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 2
+      },
+      "file": "valid/abnf-query-string-leading-star-3-4.txt",
+      "id": "abnf-query-string-leading-star-3-4",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "DERIVED FROM SECTION 3.4, NOT Appendix B: 3.4 allows a leading '*' (its prose says the wildcard may appear in the front and/or at the end) while Appendix B puts the '*' only at the end. The bytes are derivable under Appendix B only as a literal query-char star, which is a different search; registrata implements 3.4"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "class-name",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "query",
+        "query-char",
+        "query-string",
+        "quoted-query-char",
+        "response",
+        "rwhois-query",
+        "space",
+        "tab"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 2
+      },
+      "file": "valid/abnf-query-string-quoted.txt",
+      "id": "abnf-query-string-quoted",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "quoted-query-char exercised with the space and tab it adds to query-char; an inner double quote is in the production too, but registrata.query rejects one anywhere in a value, so that alternative is a documented deviation instead of a case"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "attribute-name",
+        "attribute-query",
+        "bin-boolean",
+        "class-name",
+        "cr",
+        "crlf",
+        "id-char",
+        "lf",
+        "ok-response",
+        "query",
+        "query-char",
+        "query-string",
+        "response",
+        "rwhois-query",
+        "space"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 5
+      },
+      "file": "valid/abnf-query-attribute-and-boolean.txt",
+      "id": "abnf-query-attribute-and-boolean",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "attribute-query and bin-boolean; query is left-recursive as written, so a chain is read as nesting with a depth limit, exactly as the grammar inventory notes"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "authority-area",
+        "class-dir",
+        "class-name",
+        "client-sends",
+        "cr",
+        "crlf",
+        "digit",
+        "directive-dir",
+        "directive-name",
+        "directives",
+        "display-dir",
+        "display-name",
+        "dns-char",
+        "holdconnect-dir",
+        "holdconnect-response",
+        "id-char",
+        "implementation",
+        "lf",
+        "limit-dir",
+        "limit-response",
+        "ok-response",
+        "on-off",
+        "quit-dir",
+        "quit-response",
+        "response",
+        "rwhois-dir",
+        "rwhois-protocol",
+        "schema-dir",
+        "soa-dir",
+        "space",
+        "status-dir",
+        "version-number"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 16
+      },
+      "file": "valid/abnf-directive-session-control.txt",
+      "id": "abnf-directive-session-control",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "every single-line client directive in one session; directive lines are client-to-server bytes, so they are unmatched lines to the response parser and what is pinned is that the transcript is still readable"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "attribute-def",
+        "attribute-name",
+        "authority-area",
+        "class-name",
+        "client-sends",
+        "cr",
+        "crlf",
+        "day",
+        "digit",
+        "dns-char",
+        "hour",
+        "id-char",
+        "lf",
+        "milli-second",
+        "minute",
+        "month",
+        "ok-response",
+        "response",
+        "second",
+        "serial-number",
+        "space",
+        "time-stamp",
+        "xfer-dir",
+        "year"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 4
+      },
+      "file": "valid/abnf-directive-transfer.txt",
+      "id": "abnf-directive-transfer",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "xfer-dir in its four shapes. attribute-def is optional in every part, so *attribute-def can loop on the empty string - the bare form below is legal and is why a parser cannot rely on it to make progress"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "authority-area",
+        "class-name",
+        "client-sends",
+        "cr",
+        "crlf",
+        "digit",
+        "dns-char",
+        "host-name",
+        "host-port",
+        "id-char",
+        "ip-address",
+        "lf",
+        "notify-dir",
+        "notify-response",
+        "ok-response",
+        "query",
+        "query-char",
+        "query-string",
+        "referral-query",
+        "referral-url",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 5
+      },
+      "file": "valid/abnf-directive-notify.txt",
+      "id": "abnf-directive-notify",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "notify-dir in each of its five alternates: badref and recurref carry a referral-query (a referral-url plus the query that caused it), update/inssec/delsec carry a host-port and an authority area"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "digit",
+        "direction",
+        "id-char",
+        "lf",
+        "ok-response",
+        "password-data",
+        "pgp-data",
+        "response",
+        "security-data",
+        "security-dir",
+        "security-method",
+        "security-payload",
+        "security-response",
+        "space"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 7
+      },
+      "file": "valid/abnf-directive-security.txt",
+      "id": "abnf-directive-security",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "security-dir: the directive line, its security-payload, and the optional -security off. Appendix B spells the method and data as an open set, so an extension method is as valid as password or pgp"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "cr",
+        "crlf",
+        "digit",
+        "email-char",
+        "id-char",
+        "lf",
+        "maintainer-id",
+        "object-id",
+        "ok-response",
+        "register-add",
+        "register-dir",
+        "register-line",
+        "register-off",
+        "register-off-response",
+        "register-on",
+        "register-on-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 6,
+        "register_pairs": {
+          "ID": "TEST-DNS-26.example.net"
+        }
+      },
+      "file": "valid/abnf-register-add.txt",
+      "id": "abnf-register-add",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "register-dir in the add form: register-on with the literal add, the maintainer-id, the register-add payload of register-line data, register-off, and the object-id reply"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "cr",
+        "crlf",
+        "day",
+        "digit",
+        "email-char",
+        "hour",
+        "id-char",
+        "lf",
+        "maintainer-id",
+        "milli-second",
+        "minute",
+        "month",
+        "ok-response",
+        "register-dir",
+        "register-line",
+        "register-mod",
+        "register-off",
+        "register-off-response",
+        "register-on",
+        "register-on-response",
+        "response",
+        "second",
+        "space",
+        "time-stamp",
+        "year"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 11,
+        "register_pairs": {
+          "Updated": "20200508143832482"
+        }
+      },
+      "file": "valid/abnf-register-mod.txt",
+      "id": "abnf-register-mod",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "register-dir in the mod form: register-mod is one or more register-lines, the literal _NEW_, then the replacement payload; the reply carries the Updated time-stamp"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "attribute-name",
+        "attribute-value",
+        "cr",
+        "crlf",
+        "digit",
+        "email-char",
+        "id-char",
+        "lf",
+        "maintainer-id",
+        "ok-response",
+        "register-del",
+        "register-dir",
+        "register-line",
+        "register-off",
+        "register-off-response",
+        "register-on",
+        "register-on-response",
+        "response",
+        "space"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 6
+      },
+      "file": "valid/abnf-register-del.txt",
+      "id": "abnf-register-del",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "register-dir in the del form; register-del is only the payload, so the third alternate of register-off-response (a plain response) is the one that applies"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "cr",
+        "crlf",
+        "digit",
+        "id-char",
+        "lf",
+        "ok-response",
+        "response",
+        "space",
+        "x-arguments",
+        "x-dir",
+        "x-directive",
+        "x-response"
+      ],
+      "expect": {
+        "ok": true,
+        "other_lines": 4
+      },
+      "file": "valid/abnf-x-dialogue.txt",
+      "id": "abnf-x-dialogue",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "x-dir and x-response: the X namespace is defined only as \"the server may say anything\", so an x-response is any run of lines terminated by a response"
+    },
+    {
+      "abnf": [
+        "alpha",
+        "any-char",
+        "class-line",
+        "class-name",
+        "cr",
+        "crlf",
+        "digit",
+        "directive-line",
+        "display-line",
+        "id-char",
+        "lf",
+        "ok-response",
+        "referral-line",
+        "response",
+        "responses",
+        "rwhois-banner",
+        "rwhois-protocol",
+        "rwhois-response",
+        "schema-line",
+        "server-returns",
+        "soa-line",
+        "space",
+        "status-line",
+        "xfer-line"
+      ],
+      "expect": {
+        "banners": 1,
+        "ok": true,
+        "other_lines": 2,
+        "status": {
+          "limit": "73"
+        }
+      },
+      "file": "valid/abnf-protocol-server-returns.txt",
+      "id": "abnf-protocol-server-returns",
+      "kind": "valid",
+      "parser": "response",
+      "recorded": false,
+      "source": "one server dialogue carrying every recognised response family. responses and server-returns are protocol-wide alternations, and x-response alone accepts any text ending in a response, so the witness is the whole span rather than one line"
+    }
+  ],
+  "description": "RFC 2167 RWhois transcript corpus. Valid cases assert parsed structure and, where marked, parser round-trips. Malformed cases pin the failure contract: only registrata.errors.RwhoisError subclasses may escape. Every entry lists the ABNF productions its transcript exercises under \"abnf\".",
+  "encoding": "latin-1, crlf terminated (RFC 2167 section 3.1.9)",
+  "version": 1
+}

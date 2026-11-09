@@ -1,0 +1,16 @@
+domain:Class-Name:domain
+domain:ID:EXAMPLE-DNS-ORG
+domain:Auth-Area:example.net
+domain:Domain-Name:EXAMPLE.NET
+domain:Register-Name:Example, Inc.
+domain:Generic-Server:NS1.EXAMPLE.NET
+domain:E-Mail:support@example.net
+domain:Address:123 Example Way, Anytown, VA
+domain:Phone-Number:+1 703 555 1234
+domain:Created:19970604120000Z
+domain:Changed:20240102030405Z
+domain:Last-Modified:20240102030405Z
+domain:Source:ARIN
+domain:Type:Group
+domain:Statistic:Source:ARIN
+%ok

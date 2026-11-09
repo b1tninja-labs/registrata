@@ -1,0 +1,7 @@
+%xfer domain:Class-Name:domain
+%xfer domain:ID:DOMAIN-DNS-95.hostmaster.net
+%xfer domain:Auth-Area:nic.org
+%xfer
+%xfer domain:Register-Name:Cafþ Host, Inc.
+%xfer
+%ok

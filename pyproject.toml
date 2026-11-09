@@ -1,0 +1,72 @@
+[project]
+name = "registrata"
+version = "0.1.0"
+description = "Registration-data toolkit: RFC 2167 RWhois client/server plus experimental WHOIS and RDAP with one structured lookup model"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+authors = [{ name = "Justin Capella" }]
+keywords = ["rwhois", "whois", "rdap", "rfc2167", "registration-data", "protocol", "directory"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.optional-dependencies]
+all = []
+
+[project.scripts]
+registrata = "registrata.cli:main"
+# Legacy alias kept for the pre-rename command name.
+rwhois = "registrata.cli:main"
+
+[project.urls]
+Homepage = "https://example.invalid/registrata"
+Source = "https://example.invalid/registrata"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.15"]
+
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+# src/rwhois is a thin deprecation shim that re-exports registrata.
+packages = ["src/registrata", "src/rwhois"]
+exclude = ["**/__pycache__"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src/",
+    "/tests/",
+    "/tools/",
+    "/README.md",
+    "/pyproject.toml",
+    "/LICENSE",
+]
+exclude = ["**/__pycache__"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+# The narrow default set (pycodestyle E4/E7/E9 plus pyflakes F). Naming it here keeps
+# `ruff check src tests` a reproducible gate instead of a side effect of whichever
+# ruff is installed; widening it is a change in its own right, because the codebase
+# was not written against stricter rules.
+select = ["E4", "E7", "E9", "F"]
+

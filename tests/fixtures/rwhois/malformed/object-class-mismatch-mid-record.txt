@@ -1,0 +1,3 @@
+domain:Class-Name:domain
+person:ID:12345
+%ok

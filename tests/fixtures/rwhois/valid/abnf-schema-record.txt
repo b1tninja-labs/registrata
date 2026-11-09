@@ -1,0 +1,7 @@
+%schema domain:attribute:Class-Name
+%schema domain:description:Type of the object
+%schema domain:format:re:[A-Za-z0-9-]+
+%schema
+%schema domain:attribute:Domain-Name
+%schema
+%ok

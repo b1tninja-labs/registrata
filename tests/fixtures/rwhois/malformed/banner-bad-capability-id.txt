@@ -1,0 +1,2 @@
+%rwhois V-1.5:zzzzzz:00 master.example.net
+%ok

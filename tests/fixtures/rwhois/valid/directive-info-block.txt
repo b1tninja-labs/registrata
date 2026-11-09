@@ -1,0 +1,5 @@
+%info on
+Server maintenance window 02:00-03:00 UTC.
+%ok
+%info off
+%ok

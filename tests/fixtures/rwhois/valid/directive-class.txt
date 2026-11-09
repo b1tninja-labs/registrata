@@ -1,0 +1,7 @@
+%class domain:description:Domain information
+%class domain:version:19970103101232000
+%class
+%class host:description:Host information
+%class host:version:19970214213241000
+%class
+%ok

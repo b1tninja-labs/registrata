@@ -1,0 +1,2 @@
+%referral rwhois://m.example.net:4321/
+%ok
