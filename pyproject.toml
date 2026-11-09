@@ -29,8 +29,8 @@ registrata = "registrata.cli:main"
 rwhois = "registrata.cli:main"
 
 [project.urls]
-Homepage = "https://example.invalid/registrata"
-Source = "https://example.invalid/registrata"
+Homepage = "https://github.com/b1tninja-labs/registrata"
+Source = "https://github.com/b1tninja-labs/registrata"
 
 [dependency-groups]
 dev = ["pytest>=8", "ruff>=0.15"]

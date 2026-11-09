@@ -27,6 +27,73 @@ Deprecated seams that still work, and their removal criteria:
 | `RWHOIS_*` environment variables | `RWHOIS_ENABLE_EXPERIMENTAL*` and `RWHOIS_GATEWAY_API_KEY` are still read; `REGISTRATA_*` wins when both are set. | One release cycle after `REGISTRATA_*` is documented everywhere. |
 
 
+## Obligation matrix
+
+The honesty rule: a row may read `[ok]` only when a named test would fail if the behaviour
+regressed. `tests/test_roadmap_rows.py` refuses a row that claims progress without naming a test that
+exists. The phase checklists below are the narrative; this table is the work queue.
+
+Legend: `[ok]` implemented and pinned by a named test -- `[part]` partial, with what is missing stated --
+`[ ]` not implemented -- `[no]` deliberate non-goal.
+
+| Obligation | Spec | Status | Where | Milestone |
+|---|---|---|---|---|
+| `banner.parse_banner()` | RFC 2167 section 3.1.6 | `[ok]` | `tests/test_banner.py::test_banner_parse_rfc_example` | M1 |
+| `query.parse_query()` | RFC 2167 section 3.4, Appendix B | `[ok]` | `tests/test_query.py::test_parse_query_class_restricted` | M1 |
+| `protocol.parse_response()` | RFC 2167 section 3.1, Appendix C | `[ok]` | `tests/test_rfc2167_appendix_c.py::test_the_enum_is_exactly_appendix_c` | M1 |
+| `wire.encode_line()` | RFC 2167 section 3.1 (line framing; a served line may not carry CR or LF) | `[ok]` | `tests/test_rwhois_framing.py::test_a_line_break_in_a_served_line_is_refused_before_anything_is_written` | M1 |
+| `resolver.dedupe_referrals()` | RFC 2167 sections 2.5, 2.5.1 (missing: index-server routing) | `[part]` | `tests/test_resolver.py::test_resolver_follows_link_referrals` | M2 |
+| `schema.validate_for_registration()` | RFC 2167 section 2.3, Appendix C | `[ok]` | `tests/test_register.py::test_del_removes_the_object_it_identifies` | M2 |
+| `conformance.check_server()` | RFC 2167 sections 3.1, 3.3, Appendix C | `[ok]` | `tests/test_conformance.py::test_check_server_reports_ok_on_local_memory_server` | M2 |
+| `rwhois.private-policy` | RFC 2167 section 2.3.1 | `[ok]` | `tests/test_register.py::test_a_private_object_is_withheld_and_reads_as_no_match` | M2 |
+| `rwhois.guardian` | RFC 2167 section 2.3.6 (password scheme only; missing: other schemes and the area-wide guardian) | `[part]` | `tests/test_register.py::test_the_guardians_own_password_satisfies_it` | M2 |
+| `rwhois.registration-deferred` | RFC 2167 section 3.3.9 | `[ok]` | `tests/test_register.py::test_registration_can_be_deferred_while_queries_keep_working` | M2 |
+| `rwhois.invalid-class` | RFC 2167 section 4 | `[ok]` | `tests/test_server_client.py::test_a_query_naming_an_unknown_class_is_refused_as_invalid_class` | M2 |
+| `rwhois.forward-notify-xfer` | RFC 2167 section 3.3 | `[ ]` | `tests/test_server_extra.py::test_forward_notify_xfer` (to be written) | M3 |
+| `rwhois.live-transcript` | RFC 2167 (no public RWhois server remains to record from; the corpus is synthesized from Appendix B) | `[no]` | `tests/test_rwhois_corpus.py` | - |
+| `whois.parse_fields` | RFC 3912 | `[ok]` | `tests/test_experimental_whois.py::test_parse_whois_fields` | M4 |
+| `whois.referral-following` | RFC 3912 | `[ok]` | `tests/test_experimental_whois.py::test_lookup_whois_follow_referrals_and_caches` | M4 |
+| `whois.registry-adapters` | RFC 3912 (registry profiles are not specified by it; only ARIN and RIPE are pinned) | `[part]` | `tests/test_whois_adapters.py::test_detect_whois_profiles` | M4 |
+| `rdap.bootstrap` | RFC 9224 | `[ok]` | `tests/test_experimental_rdap.py::test_resolve_domain_base_longest_match` | M5 |
+| `rdap.normalize` | RFC 9083 | `[ok]` | `tests/test_experimental_rdap.py::test_normalize_rdap` | M5 |
+| `rdap.error-body` | RFC 9083 section 6 | `[ok]` | `tests/test_rdap_http.py::test_error_details_reads_full_section_6_body` | M5 |
+| `rdap.link-header` | RFC 8288 | `[ok]` | `tests/test_rdap_http.py::test_parse_link_header_two_targets_in_one_value` | M5 |
+| `rdap.partial-response` | RFC 8982 | `[ok]` | `tests/test_rdap_extensions.py::test_subsetting_metadata_normalizes_the_field_sets` | M5 |
+| `rdap.redacted-fields` | RFC 9537 | `[ok]` | `tests/test_rdap_extensions.py::test_redacted_defaults_and_registered_name` | M5 |
+| `rdap.sort-paging` | RFC 8977 | `[ ]` | `tests/test_experimental_rdap.py::test_sort_and_paging` (to be written) | M6 |
+| `rdap.object-tagging` | RFC 8521 | `[ ]` | `tests/test_experimental_rdap.py::test_object_tagging` (to be written) | M6 |
+| `rdap.geofeed` | RFC 9877 | `[ ]` | `tests/test_rdap_extensions.py::test_geofeed` (to be written) | M6 |
+| `rdap.rir-and-reverse-search` | RFC 9910, RFC 9536 | `[ ]` | `tests/test_experimental_rdap.py::test_search_extensions` (to be written) | M6 |
+| `rdap.federated-auth` | RFC 9560 | `[ ]` | `tests/test_experimental_rdap.py::test_federated_auth` (to be written) | M6 |
+| `special_names.special_use_reason()` | RFC 2606, RFC 6761 | `[ok]` | `tests/test_special_names.py::test_special_use_names_are_recognised` | M7 |
+| `cache.make_cache()` | design | `[ok]` | `tests/test_cache.py::test_make_cache_backends` | M7 |
+| `retry.with_retries()` | design | `[ok]` | `tests/test_retry.py::test_with_retries_returns_success_and_sleeps` | M7 |
+| `circuitbreaker.run_with_circuit()` | design | `[ok]` | `tests/test_circuitbreaker.py::test_registry_and_run_with_circuit_block_open_endpoint` | M7 |
+| `ratelimit.TokenBucket()` | design | `[ok]` | `tests/test_ratelimit.py::test_token_bucket_acquire_and_refill` | M7 |
+| `lookup.unified` | design (one normalized record over RWhois, WHOIS and RDAP) | `[ok]` | `tests/test_experimental_lookup.py::test_lookup_rdap_and_whois_normalizes_rdap` | M8 |
+| `lookup.batch` | design | `[ok]` | `tests/test_batch.py::test_batch_returns_items_in_input_order_while_on_result_sees_completion_order` | M8 |
+| `gateway.tls` | design | `[ok]` | `tests/test_gateway.py::test_gateway_tls_wraps_listening_socket` | M8 |
+| `cache.redis` | design | `[ ]` | `tests/test_cache.py::test_redis_cache` (to be written) | M9 |
+| `net.proxy-and-pooling` | design | `[ ]` | `tests/test_rdap_http.py::test_proxy_and_pooling` (to be written) | M9 |
+| `obs.opentelemetry` | design | `[ ]` | `tests/test_observability.py::test_opentelemetry_hooks` (to be written) | M9 |
+| `rwhois.replication-helpers` | RFC 2167 section 3.3.14 | `[ ]` | `tests/test_server_extra.py::test_replication_helpers` (to be written) | M9 |
+
+Section numbers marked above were carried over from this project's `docs/spec.md` and
+`docs/compliance.md`; `docs/rfc-map.md` records the status of every document the table cites, verified
+against the publisher record through rfclib on 2026-11-09.
+
+## Milestones
+
+- M1 RWhois wire layer: banner, query, response and framing
+- M2 RWhois server: registration, privacy, guardians, conformance checking and referral resolution
+- M3 RWhois directives still stubbed: forward, notify, xfer
+- M4 Classic WHOIS (RFC 3912) client, referral following and registry adapters
+- M5 RDAP core: bootstrap, normalization, errors, links and the shipped extensions
+- M6 RDAP extensions not yet implemented
+- M7 Production client behaviour: special-use refusal, caching, retry, breaker and rate limit
+- M8 Unified lookup, bulk runner and the local gateway
+- M9 Optional extras: Redis, proxy and pooling, OpenTelemetry, replication helpers
+
 ## Status legend
 
 | Status | Meaning |
