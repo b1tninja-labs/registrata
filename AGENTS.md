@@ -15,10 +15,10 @@ If the person gave you a task, do that task.
 
 If you arrived with nothing to do, run this from the workspace root (`D:\code`):
 
-    python sdk-forge/loop.py pickup --who <your name> --project registrata
+    python -m projecthub pickup --who <your name> --project registrata
 
 Its output is your assignment. `NO WORK` is a real answer: ask the person what to work on. Without the
-workspace beside this repository, read `.forge/packet.md` if it exists, otherwise ask.
+workspace beside this repository, read `.projecthub/packet.md` if it exists, otherwise ask.
 
 ## Commands
 

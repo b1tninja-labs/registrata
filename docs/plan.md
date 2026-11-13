@@ -4,7 +4,7 @@
 classic WHOIS (RFC 3912) and RDAP (RFC 7480, 9082, 9083, 9224) behind one normalized lookup model.
 
 - **Directory:** `pyrwhois/` on the development machine, until it is renamed to `registrata/`. The portfolio
-  tooling resolves the project through `DIRECTORIES` in `sdk-forge/roadmap.py`.
+  tooling resolves the project through `DIRECTORIES` in projecthub's roadmap parser (`projecthub/src/projecthub/db/parser.py`).
 - **Repository:** <https://github.com/b1tninja-labs/registrata>.
 - **Formerly:** `pyrwhois`, imported as `rwhois`. The old import, console script, cache table, log key and
   `RWHOIS_*` environment variables still work; `ROADMAP.md` lists each seam and when it goes.
